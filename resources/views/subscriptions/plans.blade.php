@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900">
                     @foreach($plans as $plan)
                         <div class="mb-3">
-                            <a href="" class="hover:text-blue-500">{{ $plan->title  }}</a>
+                            <a href="{{ route('subscriptions', ['plan' => $plan->slug])  }}" class="hover:text-blue-500">{{ $plan->title  }}</a>
                         </div>
                     @endforeach
                 </div>
