@@ -12,8 +12,8 @@
                         <form action="#" method="POST" id="card-form" class="w-4/5">
                             @csrf
                             <div>
-                                <x-input-label for="name" :value="__('Name of card')" />
-                                <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" />
+                                <x-input-label for="card-holder-name" :value="__('Name of card')" />
+                                <x-text-input id="card-holder-name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" />
                                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
                             </div>
                             <div class="mt-4">
@@ -43,23 +43,26 @@
 
         const  form = document.getElementById('card-form');
         const  cardButton = document.getElementById('card-button');
+        const  cardHolderName = document.getElementById('card-holder-name');
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault()
 
             cardButton.disabled = true
 
-            await strip.confrimCardSetup(
-                cardButton.dataset.secret, {
+            const {setIntent, error} = await strip.confirmCardSetup(
+                cardButton.dataset.secrect, {
                     payment_method: {
                         card: cardElement,
                         billing_details: {
-                            name:
+                            name: cardHolderName.value
                         }
                     }
                 }
             )
 
+            console.log(setIntent)
+            console.log(error)
         })
 
 
