@@ -9,7 +9,8 @@
         <div class="mx-auto w-4/5">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                        <form action="" class="w-4/5">
+                        <form action="#" method="POST" id="card-form" class="w-4/5">
+                            @csrf
                             <div>
                                 <x-input-label for="name" :value="__('Name of card')" />
                                 <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" />
@@ -20,7 +21,7 @@
                                 <div id="card-element"></div>
                             </div>
                             <div class="flex items-center justify-end mt-4">
-                                <x-primary-button class="ms-3">
+                                <x-primary-button id="card-button" class="ms-3" data-secrect="{{ $intent->client_secret }}" >
                                     Pay
                                 </x-primary-button>
                             </div>
@@ -40,7 +41,28 @@
 
         cardElement.mount('#card-element');
 
-        console.log(strip);
+        const  form = document.getElementById('card-form');
+        const  cardButton = document.getElementById('card-button');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault()
+
+            cardButton.disabled = true
+
+            await strip.confrimCardSetup(
+                cardButton.dataset.secret, {
+                    payment_method: {
+                        card: cardElement,
+                        billing_details: {
+                            name:
+                        }
+                    }
+                }
+            )
+
+        })
+
+
     </script>
 
 </x-app-layout>

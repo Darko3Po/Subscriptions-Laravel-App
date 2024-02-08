@@ -7,8 +7,12 @@ use Illuminate\Http\Request;
 
 class SubscriptionsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('subscriptions.checkout');
+  //      dd($request->user()->createSetupIntent());
+
+        return view('subscriptions.checkout',[
+            'intent' => $request->user()->createSetupIntent()
+        ]);
     }
 }
