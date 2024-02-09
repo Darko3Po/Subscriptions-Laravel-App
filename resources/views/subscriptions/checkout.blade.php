@@ -9,7 +9,7 @@
         <div class="mx-auto w-4/5">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                        <form action="#" method="POST" id="card-form" class="w-4/5">
+                        <form action="{{route('subscriptions')}}" method="POST" id="card-form" class="w-4/5">
                             {{ csrf_field() }}
                             <div>
                                 <x-input-label for="card-holder-name" :value="__('Name of card')" />
@@ -60,22 +60,21 @@
                 }
             )
 
-            // if (error) {
-            //     cardButton.disabled = false
-            // } else {
-            //     let token = document.createElement('input');
-            //
-            //     token.setAttribute('type', 'hidden');
-            //     token.setAttribute('name', 'token');
-            //     token.setAttribute('value', setupIntent.payment_method);
-            //
-            //     form.appendChild(token)
-            //
-            //     form.submit();
-            // }
 
-            console.log(setupIntent)
-            console.log(error)
+
+                let token = document.createElement('input');
+
+                token.setAttribute('type','hidden');
+                token.setAttribute('name','token');
+                token.setAttribute('value', setupIntent.payment_method);
+
+                form.submit();
+
+
+
+            //
+            // console.log(setupIntent)
+            // console.log(error)
 
         })
 

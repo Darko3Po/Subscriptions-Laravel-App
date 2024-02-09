@@ -23,6 +23,7 @@ Route::get('/', function () {
 Route::group(['namespace' => 'Subscriptions'], function (){
     Route::get('plans',[PlanController::class,'index'])->name('subscriptions.plans');
     Route::get('subscriptions',[SubscriptionsController::class,'index'])->name('subscriptions');
+    Route::post('subscriptions',[SubscriptionsController::class,'store']);
 });
 
 Route::get('/dashboard', function () {

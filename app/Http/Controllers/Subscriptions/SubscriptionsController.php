@@ -9,10 +9,17 @@ class SubscriptionsController extends Controller
 {
     public function index(Request $request)
     {
-  //      dd($request->user()->createSetupIntent());
+        //  dd($request->user()->createSetupIntent());
 
         return view('subscriptions.checkout',[
             'intent' => $request->user()->createSetupIntent()
         ]);
     }
+
+    public function store(Request $request)
+    {
+        dd($request->all());
+    }
+
+
 }
