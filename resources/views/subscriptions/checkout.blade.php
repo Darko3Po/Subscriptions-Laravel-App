@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                         <form action="#" method="POST" id="card-form" class="w-4/5">
-                            @csrf
+                            {{ csrf_field() }}
                             <div>
                                 <x-input-label for="card-holder-name" :value="__('Name of card')" />
                                 <x-text-input id="card-holder-name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" />
@@ -34,23 +34,22 @@
 {{--    STRIPE_KEY=pk_test_51OfHGtDbT4THc2zuZG7YOK6slxOuSKrSKQFMT4B5SjPoljmGoYmoOg1NXO6e91sBNdKBHMHCvPP7dLp25dKmiPV200NqngSJUr--}}
     <script>
         const strip = Stripe('{{ config('cashier.key') }}')
-
         const elements = strip.elements();
-
         const cardElement = elements.create('card');
 
         cardElement.mount('#card-element');
 
-        const  form = document.getElementById('card-form');
-        const  cardButton = document.getElementById('card-button');
-        const  cardHolderName = document.getElementById('card-holder-name');
+        const form = document.getElementById('card-form')
+        const cardButton = document.getElementById('card-button')
+        const cardHolderName = document.getElementById('card-holder-name')
+
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault()
 
             cardButton.disabled = true
 
-            const {setIntent, error} = await strip.confirmCardSetup(
+            const {setupIntent, error} = await strip.confirmCardSetup(
                 cardButton.dataset.secrect, {
                     payment_method: {
                         card: cardElement,
@@ -61,8 +60,23 @@
                 }
             )
 
-            console.log(setIntent)
+            // if (error) {
+            //     cardButton.disabled = false
+            // } else {
+            //     let token = document.createElement('input');
+            //
+            //     token.setAttribute('type', 'hidden');
+            //     token.setAttribute('name', 'token');
+            //     token.setAttribute('value', setupIntent.payment_method);
+            //
+            //     form.appendChild(token)
+            //
+            //     form.submit();
+            // }
+
+            console.log(setupIntent)
             console.log(error)
+
         })
 
 
