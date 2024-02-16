@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Account\AccountController;
+use App\Http\Controllers\Account\Subscriptions\SubscriptionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Subscriptions\PlanController;
 use App\Http\Controllers\Subscriptions\SubscriptionsController;
@@ -29,6 +30,12 @@ Route::group(['namespace' => 'Subscriptions'], function (){
 
 Route::group(['namespace' => 'Account','prefix' => 'account'], function (){
     Route::get('/',[AccountController::class,'index'])->name('account');
+
+
+    Route::group(['namespace' => 'Subscriptions', 'prefix' => 'subscriptions'], function (){
+       Route::get('/',[SubscriptionController::class,'index'])->name('account.subscriptions');
+    });
+
 });
 
 
