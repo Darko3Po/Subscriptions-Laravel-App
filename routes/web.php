@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Account\AccountController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Subscriptions\PlanController;
 use App\Http\Controllers\Subscriptions\SubscriptionsController;
@@ -25,6 +26,12 @@ Route::group(['namespace' => 'Subscriptions'], function (){
     Route::get('subscriptions',[SubscriptionsController::class,'index'])->name('subscriptions');
     Route::post('subscriptions',[SubscriptionsController::class,'store']);
 });
+
+Route::group(['namespace' => 'Account','prefix' => 'account'], function (){
+    Route::get('/',[AccountController::class,'index'])->name('account');
+});
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

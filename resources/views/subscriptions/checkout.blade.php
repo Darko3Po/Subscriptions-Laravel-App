@@ -68,9 +68,9 @@
                 token.setAttribute('name','token');
                 token.setAttribute('value', setupIntent.payment_method);
 
+                form.appendChild(token)
+
                 form.submit();
-
-
 
             //
             // console.log(setupIntent)
