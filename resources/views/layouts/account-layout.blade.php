@@ -11,7 +11,7 @@
                     <li><a href="{{ route('account')  }}" class="hover:text-blue-500">Account</a></li>
                 </ul>
                 <ul class="mb-10">
-                    <li><a href="" class="hover:text-blue-500">Subscription</a></li>
+                    <li><a href="{{route('account.subscriptions')}}" class="hover:text-blue-500">Subscription</a></li>
                 </ul>
             </div>
             <div class="w-full">
