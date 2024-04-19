@@ -14,9 +14,18 @@
               <ul class="mb-10">
                   <li><a href="{{ route('account.subscriptions') }}" class="hover:text-blue-500">Subscription</a></li>
               </ul>
+              @if(auth()->user()->subscribed())
+                  @if(!auth()->user()->subscription('default')->cancel() )
+                      <ul class="mb-10">
+                          <li><a href="{{ route('account.subscriptions.cancel') }}" class="hover:text-blue-500">Cancle Subscription</a></li>
+                      </ul>
+                 @endif
+              @endif
           </div>
             <div class="col-span-6">
                 {{ $slot }}
             </div>
         </div>
+
+
 </x-app-layout>

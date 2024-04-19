@@ -21,7 +21,7 @@ class PlanSeeder extends Seeder
 
         Plan::create([
             'title' => 'Yearly',
-            'slug' => 'yarly',
+            'slug' => 'yearly',
             'stripe_id' => 'price_1OfHY4DbT4THc2zur9ANgZ4L',
         ]);
 
