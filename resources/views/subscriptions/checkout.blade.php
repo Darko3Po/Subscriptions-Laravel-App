@@ -43,7 +43,6 @@
         const cardButton = document.getElementById('card-button')
         const cardHolderName = document.getElementById('card-holder-name')
 
-
         form.addEventListener('submit', async (e) => {
             e.preventDefault()
 
@@ -60,25 +59,20 @@
                 }
             )
 
-
-
+            if (error) {
+                cardButton.disabled = false
+            } else {
                 let token = document.createElement('input');
 
-                token.setAttribute('type','hidden');
-                token.setAttribute('name','token');
+                token.setAttribute('type', 'hidden');
+                token.setAttribute('name', 'token');
                 token.setAttribute('value', setupIntent.payment_method);
 
                 form.appendChild(token)
 
                 form.submit();
-
-            //
-            // console.log(setupIntent)
-            // console.log(error)
-
+            }
         })
-
-
     </script>
 
 </x-app-layout>
