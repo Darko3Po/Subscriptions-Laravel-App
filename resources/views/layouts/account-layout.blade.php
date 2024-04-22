@@ -23,7 +23,7 @@
               @endif
 
               @if(auth()->user()->subscribed())
-                  @if(!auth()->user()->subscription('default')->canceled() )
+                  @if(auth()->user()->subscription('default')->canceled() )
                       <ul class="mb-10">
                           <li><a href="{{ route('account.subscriptions.resume') }}" class="hover:text-blue-500">Resume Subscription</a></li>
                       </ul>
