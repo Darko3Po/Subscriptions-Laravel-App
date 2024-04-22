@@ -4,6 +4,7 @@ use App\Http\Controllers\Account\AccountController;
 use App\Http\Controllers\Account\Subscriptions\SubscriptionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubscriptionCancleController;
+use App\Http\Controllers\SubscriptionResumeController;
 use App\Http\Controllers\Subscriptions\PlanController;
 use App\Http\Controllers\Subscriptions\SubscriptionsController;
 use Illuminate\Support\Facades\Route;
@@ -37,6 +38,9 @@ Route::group(['namespace' => 'Account','prefix' => 'account'], function (){
        Route::get('/',[SubscriptionController::class,'index'])->name('account.subscriptions');
        Route::get('/cancel',[SubscriptionCancleController::class,'index'])->name('account.subscriptions.cancel');
        Route::post('/cancel',[SubscriptionCancleController::class,'store']);
+
+        Route::get('/resume',[SubscriptionResumeController::class,'index'])->name('account.subscriptions.resume');
+        Route::post('/resume',[SubscriptionResumeController::class,'store']);
     });
 
 });
