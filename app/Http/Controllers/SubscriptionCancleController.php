@@ -8,7 +8,7 @@ class SubscriptionCancleController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'subscribed']);
     }
 
     public function index()

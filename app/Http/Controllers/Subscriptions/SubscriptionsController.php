@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class SubscriptionsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth','not.subscribed']);
+    }
+
     public function index(Request $request)
     {
         if ($request->user() === NULL)

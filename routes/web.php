@@ -7,6 +7,7 @@ use App\Http\Controllers\SubscriptionCancleController;
 use App\Http\Controllers\SubscriptionResumeController;
 use App\Http\Controllers\Subscriptions\PlanController;
 use App\Http\Controllers\Subscriptions\SubscriptionsController;
+use App\Http\Middleware\Subscribed;
 use Illuminate\Support\Facades\Route;
 
 /*
