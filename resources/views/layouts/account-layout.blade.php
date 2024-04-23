@@ -14,21 +14,22 @@
               <ul class="mb-10">
                   <li><a href="{{ route('account.subscriptions') }}" class="hover:text-blue-500">Subscription</a></li>
               </ul>
+
               @if(auth()->user()->subscribed())
                   @if(!auth()->user()->subscription('default')->canceled() )
                       <ul class="mb-10">
                           <li><a href="{{ route('account.subscriptions.cancel') }}" class="hover:text-blue-500">Cancle Subscription</a></li>
                       </ul>
                  @endif
+
+                      @if(auth()->user()->subscription('default')->canceled() )
+                          <ul class="mb-10">
+                              <li><a href="{{ route('account.subscriptions.resume') }}" class="hover:text-blue-500">Resume Subscription</a></li>
+                          </ul>
+                      @endif
+
               @endif
 
-              @if(auth()->user()->subscribed())
-                  @if(auth()->user()->subscription('default')->canceled() )
-                      <ul class="mb-10">
-                          <li><a href="{{ route('account.subscriptions.resume') }}" class="hover:text-blue-500">Resume Subscription</a></li>
-                      </ul>
-                  @endif
-              @endif
           </div>
             <div class="col-span-6">
                 {{ $slot }}
